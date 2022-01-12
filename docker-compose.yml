@@ -26,7 +26,7 @@ services:
         ports:
             - 8005:80
         expose:
-            - 80
+            - 8005
         networks:
             public_net:
                 ipv4_address: ${HA_PROXY_IP}
