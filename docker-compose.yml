@@ -9,6 +9,8 @@ services:
         networks:
             public_net:
                 ipv4_address: ${APACHE_1_IP}
+        ports:
+            - 8006:80
     apache_img_2:
         container_name: ${COMPOSE_PROJECT_NAME}_apache_con_2
         build: ./apache/apache02
@@ -17,10 +19,12 @@ services:
         networks:
             public_net:
                 ipv4_address: ${APACHE_2_IP}
+        ports:
+            - 8007:80
     haproxy_img:
         build: ./haproxy
         ports:
-            - 80:8005
+            - 8005:80
         expose:
             - 80
         networks:
