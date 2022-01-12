@@ -20,7 +20,7 @@ services:
     haproxy_img:
         build: ./haproxy
         ports:
-            - 80:80
+            - 8005:80
         expose:
             - 80
         networks:
