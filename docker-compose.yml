@@ -20,9 +20,9 @@ services:
     haproxy_img:
         build: ./haproxy
         ports:
-            - 8005:80
+            - 80:8005
         expose:
-            - 8005
+            - 80
         networks:
             public_net:
                 ipv4_address: ${HA_PROXY_IP}
