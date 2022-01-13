@@ -20,7 +20,7 @@ services:
             public_net:
                 ipv4_address: ${APACHE_2_IP}
         ports:
-            - 8007:80
+            - 8009:80
     haproxy_img:
         build: ./haproxy
         ports:
