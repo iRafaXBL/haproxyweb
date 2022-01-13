@@ -1,32 +1,36 @@
 version: '3'
  
 services:
-    apache_img_1:
-        container_name: ${COMPOSE_PROJECT_NAME}_apache_con_1
-        build: ./apache/apache01
+    apaxy_1:
+        container_name: apaxy_1
+        build:
+          context: ./
+          dockerfile: Dockerfile
         expose:
-            - ${APACHE_EXPOSED_PORT}
+            - 8484/tcp
+#            - ${APACHE_EXPOSED_PORT}
         networks:
             public_net:
                 ipv4_address: ${APACHE_1_IP}
-        ports:
-            - 8006:80/tcp
-    apache_img_2:
-        container_name: ${COMPOSE_PROJECT_NAME}_apache_con_2
-        build: ./apache/apache02
+    apaxy_2:
+        container_name: apaxy_2
+        build:
+          context: ./
+          dockerfile: Dockerfile
         expose:
-            - ${APACHE_EXPOSED_PORT}
+            - 8484/tcp
+#            - ${APACHE_EXPOSED_PORT}
         networks:
             public_net:
                 ipv4_address: ${APACHE_2_IP}
-        ports:
-            - 8009:80
     haproxy_img:
-        build: ./haproxy
+        build:
+          context: ./
+          dockerfile: Dockerfile
         ports:
-            - 8005:80/tcp
+            - 8484:80
         expose:
-            - 8005
+            - 8484
         networks:
             public_net:
                 ipv4_address: ${HA_PROXY_IP}
@@ -37,7 +41,8 @@ services:
 networks:
     public_net:
         driver: bridge
-        ipam:
-            driver: default
-            config:
-                - subnet: ${NETWORK_SUBNET}
+#        ipam:
+#            driver: default
+#            config:
+#                - subnet: ${NETWORK_SUBNET}
+#
